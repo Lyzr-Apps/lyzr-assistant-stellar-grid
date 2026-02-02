@@ -11,15 +11,14 @@ import {
   Sun,
   Moon,
   Menu,
-  X,
   Plus,
   Search,
   User,
   ChevronLeft,
-  ChevronRight,
   Loader2,
   ExternalLink,
-  Bot
+  Bot,
+  Sparkles
 } from 'lucide-react'
 import { callAIAgent } from '@/utils/aiAgent'
 
@@ -69,19 +68,19 @@ const PREDEFINED_PROMPTS = [
   "How do I build my first agent?"
 ]
 
-// Logo SVG component
+// Lyzr Logo Component with actual brand colors
 function LyzrLogo({ className = "" }: { className?: string }) {
   return (
-    <div className={cn("font-bold text-xl flex items-center gap-2", className)}>
-      <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-[#6C5CE7] to-[#0984E3] flex items-center justify-center text-white font-bold">
+    <div className={cn("font-heading text-2xl flex items-center gap-2", className)}>
+      <div className="w-9 h-9 rounded-xl bg-gradient-to-br from-[#7458e8] to-[#8d65e9] flex items-center justify-center text-white font-bold shadow-sm">
         L
       </div>
-      <span>Lyzr</span>
+      <span className="font-semibold">Lyzr</span>
     </div>
   )
 }
 
-// Header Component
+// Header Component with Lyzr styling
 function Header({
   theme,
   onToggleTheme
@@ -90,11 +89,11 @@ function Header({
   onToggleTheme: () => void
 }) {
   return (
-    <header className="h-[60px] border-b flex items-center justify-between px-6 bg-background">
+    <header className="h-[70px] border-b flex items-center justify-between px-6 bg-background">
       <div className="flex items-center gap-4">
         <LyzrLogo />
         <Separator orientation="vertical" className="h-6" />
-        <h1 className="text-lg font-semibold">Lyzr Support</h1>
+        <h1 className="font-heading text-xl font-medium">Support Assistant</h1>
       </div>
 
       <div className="flex items-center gap-3">
@@ -102,15 +101,15 @@ function Header({
           variant="ghost"
           size="icon"
           onClick={onToggleTheme}
-          className="rounded-full"
+          className="rounded-full hover:bg-muted transition-colors"
         >
           {theme === 'light' ? (
-            <Moon className="w-5 h-5" />
+            <Moon className="w-5 h-5 text-muted-foreground" />
           ) : (
-            <Sun className="w-5 h-5" />
+            <Sun className="w-5 h-5 text-muted-foreground" />
           )}
         </Button>
-        <div className="w-9 h-9 rounded-full bg-[#6C5CE7] flex items-center justify-center">
+        <div className="w-10 h-10 rounded-full bg-gradient-to-br from-[#7458e8] to-[#8d65e9] flex items-center justify-center shadow-sm">
           <User className="w-5 h-5 text-white" />
         </div>
       </div>
@@ -145,11 +144,11 @@ function Sidebar({
   return (
     <>
       {isOpen && (
-        <aside className="w-[250px] border-r bg-background flex flex-col">
+        <aside className="w-[260px] border-r bg-background flex flex-col">
           <div className="p-4 space-y-3">
             <Button
               onClick={onNewChat}
-              className="w-full bg-[#6C5CE7] hover:bg-[#5f4fd1] text-white"
+              className="w-full rounded-[50px] border-2 border-[rgba(210,210,210,0.5)] bg-[#7458e8] hover:bg-[#8d65e9] text-white font-ui font-medium shadow-sm transition-all duration-200"
             >
               <Plus className="w-4 h-4 mr-2" />
               New Chat
@@ -161,7 +160,7 @@ function Sidebar({
                 placeholder="Search conversations..."
                 value={searchQuery}
                 onChange={(e) => onSearchChange(e.target.value)}
-                className="pl-9"
+                className="pl-9 font-ui rounded-xl"
               />
             </div>
           </div>
@@ -173,13 +172,13 @@ function Sidebar({
                   key={conv.id}
                   onClick={() => onSelectConversation(conv.id)}
                   className={cn(
-                    "w-full text-left px-3 py-2 rounded-lg transition-colors",
+                    "w-full text-left px-3 py-2.5 rounded-xl transition-all duration-200 font-ui",
                     "hover:bg-accent",
-                    activeConversationId === conv.id && "bg-accent"
+                    activeConversationId === conv.id && "bg-accent shadow-sm"
                   )}
                 >
                   <div className="font-medium text-sm truncate">{conv.title}</div>
-                  <div className="text-xs text-muted-foreground">
+                  <div className="text-xs text-muted-foreground mt-0.5">
                     {new Date(conv.timestamp).toLocaleDateString()}
                   </div>
                 </button>
@@ -193,7 +192,7 @@ function Sidebar({
         variant="ghost"
         size="icon"
         onClick={onToggle}
-        className="absolute top-[70px] left-2 z-10 rounded-full"
+        className="absolute top-[80px] left-2 z-10 rounded-full hover:bg-muted"
       >
         {isOpen ? (
           <ChevronLeft className="w-4 h-4" />
@@ -205,31 +204,35 @@ function Sidebar({
   )
 }
 
-// Predefined Prompts Component
+// Predefined Prompts Component with Lyzr branding
 function PredefinedPrompts({ onSelectPrompt }: { onSelectPrompt: (prompt: string) => void }) {
   return (
     <div className="max-w-3xl mx-auto px-4">
-      <div className="text-center mb-8">
-        <div className="flex justify-center mb-4">
-          <div className="w-16 h-16 rounded-full bg-gradient-to-br from-[#6C5CE7] to-[#0984E3] flex items-center justify-center">
-            <Bot className="w-8 h-8 text-white" />
+      <div className="text-center mb-10">
+        <div className="flex justify-center mb-6">
+          <div className="w-20 h-20 rounded-2xl bg-gradient-to-br from-[#7458e8] to-[#8d65e9] flex items-center justify-center shadow-lg">
+            <Sparkles className="w-10 h-10 text-white" />
           </div>
         </div>
-        <h2 className="text-2xl font-bold mb-2">Hi! I'm your Lyzr Support Assistant.</h2>
-        <p className="text-muted-foreground">
-          Ask me anything about Lyzr's platform, APIs, or tutorials.
+        <h2 className="font-heading text-4xl font-semibold mb-3 text-foreground">
+          Hi! I'm your Lyzr Support Assistant
+        </h2>
+        <p className="font-body text-lg text-muted-foreground">
+          Ask me anything about Lyzr's platform, APIs, or tutorials
         </p>
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
         {PREDEFINED_PROMPTS.map((prompt, index) => (
           <Card
             key={index}
-            className="cursor-pointer transition-all hover:shadow-md hover:border-[#6C5CE7] group"
+            className="cursor-pointer transition-all duration-200 hover:shadow-lg hover:border-[#7458e8] group rounded-2xl border-2"
             onClick={() => onSelectPrompt(prompt)}
           >
-            <CardContent className="p-4">
-              <p className="text-sm font-medium group-hover:text-[#6C5CE7]">{prompt}</p>
+            <CardContent className="p-5">
+              <p className="font-ui text-sm font-medium group-hover:text-[#7458e8] transition-colors">
+                {prompt}
+              </p>
             </CardContent>
           </Card>
         ))}
@@ -238,14 +241,14 @@ function PredefinedPrompts({ onSelectPrompt }: { onSelectPrompt: (prompt: string
   )
 }
 
-// Chat Message Component
+// Chat Message Component with Lyzr styling
 function ChatMessage({ message }: { message: Message }) {
   const isUser = message.role === 'user'
 
   return (
-    <div className={cn("flex gap-3 mb-6", isUser && "flex-row-reverse")}>
+    <div className={cn("flex gap-4 mb-8", isUser && "flex-row-reverse")}>
       {!isUser && (
-        <div className="w-8 h-8 rounded-full bg-gradient-to-br from-[#6C5CE7] to-[#0984E3] flex items-center justify-center flex-shrink-0">
+        <div className="w-10 h-10 rounded-full bg-gradient-to-br from-[#7458e8] to-[#8d65e9] flex items-center justify-center flex-shrink-0 shadow-sm">
           <Bot className="w-5 h-5 text-white" />
         </div>
       )}
@@ -253,31 +256,33 @@ function ChatMessage({ message }: { message: Message }) {
       <div className={cn("flex-1 max-w-[80%]", isUser && "flex flex-col items-end")}>
         <div
           className={cn(
-            "rounded-lg px-4 py-3",
+            "rounded-2xl px-5 py-3.5 font-body",
             isUser
-              ? "bg-[#6C5CE7] text-white"
+              ? "bg-gradient-to-br from-[#7458e8] to-[#8d65e9] text-white shadow-md"
               : "bg-muted"
           )}
         >
-          <p className="whitespace-pre-wrap">{message.content}</p>
+          <p className="whitespace-pre-wrap leading-relaxed">{message.content}</p>
 
           {message.response && !isUser && (
-            <div className="mt-4 space-y-4">
+            <div className="mt-5 space-y-4">
               {/* Sources */}
               {message.response.sources && message.response.sources.length > 0 && (
                 <div>
-                  <p className="text-xs font-semibold mb-2 text-muted-foreground">Sources:</p>
-                  <div className="space-y-1">
+                  <p className="text-xs font-semibold mb-2 text-muted-foreground uppercase tracking-wide font-ui">
+                    Sources
+                  </p>
+                  <div className="space-y-2">
                     {message.response.sources.map((source, idx) => (
                       <a
                         key={idx}
                         href={source}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="flex items-center gap-1 text-xs text-[#0984E3] hover:underline"
+                        className="flex items-center gap-2 text-sm text-[#7458e8] hover:text-[#8d65e9] hover:underline transition-colors font-ui"
                       >
-                        <ExternalLink className="w-3 h-3" />
-                        {source}
+                        <ExternalLink className="w-3.5 h-3.5 flex-shrink-0" />
+                        <span className="truncate">{source}</span>
                       </a>
                     ))}
                   </div>
@@ -287,10 +292,16 @@ function ChatMessage({ message }: { message: Message }) {
               {/* Related Topics */}
               {message.response.related_topics && message.response.related_topics.length > 0 && (
                 <div>
-                  <p className="text-xs font-semibold mb-2 text-muted-foreground">Related Topics:</p>
+                  <p className="text-xs font-semibold mb-2 text-muted-foreground uppercase tracking-wide font-ui">
+                    Related Topics
+                  </p>
                   <div className="flex flex-wrap gap-2">
                     {message.response.related_topics.map((topic, idx) => (
-                      <Badge key={idx} variant="secondary" className="text-xs">
+                      <Badge
+                        key={idx}
+                        variant="secondary"
+                        className="text-xs font-ui px-3 py-1 rounded-full bg-accent text-accent-foreground"
+                      >
                         {topic}
                       </Badge>
                     ))}
@@ -301,7 +312,10 @@ function ChatMessage({ message }: { message: Message }) {
               {/* Confidence Score */}
               {message.response.confidence && message.response.confidence > 0.7 && (
                 <div>
-                  <Badge variant="outline" className="text-xs">
+                  <Badge
+                    variant="outline"
+                    className="text-xs font-ui px-3 py-1 rounded-full border-[#7458e8] text-[#7458e8]"
+                  >
                     Confidence: {(message.response.confidence * 100).toFixed(0)}%
                   </Badge>
                 </div>
@@ -310,7 +324,7 @@ function ChatMessage({ message }: { message: Message }) {
           )}
         </div>
 
-        <p className="text-xs text-muted-foreground mt-1 px-1">
+        <p className="text-xs text-muted-foreground mt-2 px-2 font-ui">
           {new Date(message.timestamp).toLocaleTimeString([], {
             hour: '2-digit',
             minute: '2-digit'
@@ -319,7 +333,7 @@ function ChatMessage({ message }: { message: Message }) {
       </div>
 
       {isUser && (
-        <div className="w-8 h-8 rounded-full bg-[#6C5CE7] flex items-center justify-center flex-shrink-0">
+        <div className="w-10 h-10 rounded-full bg-gradient-to-br from-[#7458e8] to-[#8d65e9] flex items-center justify-center flex-shrink-0 shadow-sm">
           <User className="w-5 h-5 text-white" />
         </div>
       )}
@@ -330,12 +344,12 @@ function ChatMessage({ message }: { message: Message }) {
 // Typing Indicator Component
 function TypingIndicator() {
   return (
-    <div className="flex gap-3 mb-6">
-      <div className="w-8 h-8 rounded-full bg-gradient-to-br from-[#6C5CE7] to-[#0984E3] flex items-center justify-center flex-shrink-0">
+    <div className="flex gap-4 mb-8">
+      <div className="w-10 h-10 rounded-full bg-gradient-to-br from-[#7458e8] to-[#8d65e9] flex items-center justify-center flex-shrink-0 shadow-sm">
         <Bot className="w-5 h-5 text-white" />
       </div>
-      <div className="bg-muted rounded-lg px-4 py-3">
-        <div className="flex gap-1">
+      <div className="bg-muted rounded-2xl px-5 py-4">
+        <div className="flex gap-1.5">
           <div className="w-2 h-2 rounded-full bg-muted-foreground animate-bounce" style={{ animationDelay: '0ms' }} />
           <div className="w-2 h-2 rounded-full bg-muted-foreground animate-bounce" style={{ animationDelay: '150ms' }} />
           <div className="w-2 h-2 rounded-full bg-muted-foreground animate-bounce" style={{ animationDelay: '300ms' }} />
@@ -526,7 +540,7 @@ export default function Home() {
 
         <main className="flex-1 flex flex-col">
           <ScrollArea className="flex-1" ref={scrollRef}>
-            <div className="max-w-4xl mx-auto py-8 px-4">
+            <div className="max-w-4xl mx-auto py-12 px-6">
               {showPredefinedPrompts ? (
                 <PredefinedPrompts onSelectPrompt={handleSendMessage} />
               ) : (
@@ -540,19 +554,19 @@ export default function Home() {
             </div>
           </ScrollArea>
 
-          <div className="border-t bg-background p-4">
-            <form onSubmit={handleSubmit} className="max-w-4xl mx-auto flex gap-2">
+          <div className="border-t bg-background p-6">
+            <form onSubmit={handleSubmit} className="max-w-4xl mx-auto flex gap-3">
               <Input
                 value={inputValue}
                 onChange={(e) => setInputValue(e.target.value)}
                 placeholder="Ask me anything about Lyzr..."
                 disabled={isLoading}
-                className="flex-1"
+                className="flex-1 rounded-[50px] border-2 font-ui text-base px-5 py-6 focus-visible:ring-[#7458e8]"
               />
               <Button
                 type="submit"
                 disabled={!inputValue.trim() || isLoading}
-                className="bg-[#6C5CE7] hover:bg-[#5f4fd1] text-white"
+                className="rounded-[50px] border-2 border-[rgba(210,210,210,0.5)] bg-gradient-to-br from-[#7458e8] to-[#8d65e9] hover:from-[#8d65e9] hover:to-[#7458e8] text-white px-6 shadow-md transition-all duration-200 font-ui font-medium"
               >
                 {isLoading ? (
                   <Loader2 className="w-5 h-5 animate-spin" />
