@@ -1,0 +1,73 @@
+{
+  "agent_name": "Lyzr Support Agent",
+  "agent_id": "69808344066158e77fde9b95",
+  "agent_purpose": "research",
+  "description": "Returns answers to user questions about Lyzr platform with sources, related topics, and confidence score",
+  "response_schema": {
+    "status": "string",
+    "result": {
+      "answer": "string",
+      "sources": [
+        "string"
+      ],
+      "related_topics": [
+        "string"
+      ],
+      "confidence": "number"
+    },
+    "metadata": {
+      "agent_name": "string",
+      "timestamp": "string"
+    }
+  },
+  "example_response": {
+    "status": "success",
+    "result": {
+      "answer": "To get started with Lyzr, you should refer to the official documentation's introduction and getting started guides. These resources provide step-by-step instructions for setting up your environment, understanding core concepts such as agents, features, tools, and models, and walking through basic usage patterns. The platform offers modules like Lyzr Agent Studio, detailed API documentation, and cookbooks to help you quickly build, configure, and interact with AI agents tailored to specific tasks. You should begin by accessing the Docs home page, navigate to the 'Introduction' and 'Getting Started' sections, and explore the tutorials on using the Agent Studio and API endpoints. You\u2019ll also find examples for creating, managing, and interacting with agents and sessions.",
+      "sources": [
+        "https://docs.lyzr.ai/introduction/getting-started/intro",
+        "https://docs.lyzr.ai/agent-lab/build-paths/studio/studiopath",
+        "https://docs.lyzr.ai/agent-apis/agents/Introduction"
+      ],
+      "related_topics": [
+        "Lyzr Agent Studio",
+        "How to create your first agent",
+        "Using Lyzr API endpoints",
+        "Available models and features",
+        "Managing sessions and tools"
+      ],
+      "confidence": 0.76
+    },
+    "metadata": {
+      "agent_name": "Lyzr Support Agent",
+      "timestamp": "2024-06-09T03:01:55Z"
+    }
+  },
+  "is_actual_tested": true,
+  "test_timestamp": "2026-02-02T10:59:12.245768",
+  "test_message_used": "Research a sample topic for testing",
+  "actual_test_response": {
+    "status": "success",
+    "result": {
+      "answer": "To get started with Lyzr, you should refer to the official documentation's introduction and getting started guides. These resources provide step-by-step instructions for setting up your environment, understanding core concepts such as agents, features, tools, and models, and walking through basic usage patterns. The platform offers modules like Lyzr Agent Studio, detailed API documentation, and cookbooks to help you quickly build, configure, and interact with AI agents tailored to specific tasks. You should begin by accessing the Docs home page, navigate to the 'Introduction' and 'Getting Started' sections, and explore the tutorials on using the Agent Studio and API endpoints. You\u2019ll also find examples for creating, managing, and interacting with agents and sessions.",
+      "sources": [
+        "https://docs.lyzr.ai/introduction/getting-started/intro",
+        "https://docs.lyzr.ai/agent-lab/build-paths/studio/studiopath",
+        "https://docs.lyzr.ai/agent-apis/agents/Introduction"
+      ],
+      "related_topics": [
+        "Lyzr Agent Studio",
+        "How to create your first agent",
+        "Using Lyzr API endpoints",
+        "Available models and features",
+        "Managing sessions and tools"
+      ],
+      "confidence": 0.76
+    },
+    "metadata": {
+      "agent_name": "Lyzr Support Agent",
+      "timestamp": "2024-06-09T03:01:55Z"
+    }
+  },
+  "test_passed": true
+}

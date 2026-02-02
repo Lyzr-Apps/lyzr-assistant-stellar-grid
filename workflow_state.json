@@ -1,0 +1,27 @@
+{
+  "workflow_status": "complete",
+  "created_at": "2026-02-02T00:00:00Z",
+  "agents": [
+    {
+      "agent_id": "69808344066158e77fde9b95",
+      "name": "Lyzr Support Agent",
+      "type": "Single",
+      "status": "active",
+      "has_knowledge_base": true,
+      "rag_id": "69808335fd1daac38e53c634",
+      "provider": "OpenAI",
+      "model": "gpt-4.1"
+    }
+  ],
+  "knowledge_bases": [
+    {
+      "rag_id": "69808335fd1daac38e53c634",
+      "name": "Lyzr Docs KB",
+      "rag_name": "lyzrdocskbru1x",
+      "status": "crawling",
+      "crawled_urls_count": 5
+    }
+  ],
+  "total_agents": 1,
+  "total_knowledge_bases": 1
+}

@@ -1,0 +1,76 @@
+{
+  "nodes": [
+    {
+      "id": "user_input",
+      "type": "Input",
+      "label": "User Query",
+      "nodeCategory": "input",
+      "position": {
+        "x": 100,
+        "y": 200
+      }
+    },
+    {
+      "id": "lyzr_support_agent",
+      "type": "Agent",
+      "label": "Lyzr Support Agent",
+      "nodeCategory": "agent",
+      "agent_id": "69808344066158e77fde9b95",
+      "position": {
+        "x": 400,
+        "y": 200
+      }
+    },
+    {
+      "id": "response_output",
+      "type": "Output",
+      "label": "Response",
+      "nodeCategory": "end",
+      "position": {
+        "x": 700,
+        "y": 200
+      }
+    }
+  ],
+  "edges": [
+    {
+      "source": "user_input",
+      "target": "lyzr_support_agent"
+    },
+    {
+      "source": "lyzr_support_agent",
+      "target": "response_output"
+    }
+  ],
+  "agents": [
+    {
+      "agent_id": "69808344066158e77fde9b95",
+      "name": "Lyzr Support Agent",
+      "description": "Answers user questions about Lyzr platform, APIs, tutorials, cookbooks, and getting started guides by searching through Lyzr's official documentation",
+      "agent_role": "Lyzr Documentation Assistant",
+      "agent_goal": "Provide accurate and helpful answers to user questions about the Lyzr platform by searching through official documentation, tutorials, cookbooks, and API guides",
+      "provider_id": "OpenAI",
+      "model": "gpt-4.1",
+      "temperature": 0.3,
+      "top_p": 1,
+      "has_knowledge_base": true,
+      "rag_id": "69808335fd1daac38e53c634",
+      "rag_name": "lyzrdocskbru1x"
+    }
+  ],
+  "knowledge_bases": [
+    {
+      "rag_id": "69808335fd1daac38e53c634",
+      "name": "Lyzr Docs KB",
+      "rag_name": "lyzrdocskbru1x",
+      "description": "Knowledge base containing Lyzr platform documentation, API guides, tutorials, cookbooks, and getting started resources",
+      "crawled_urls": [
+        "https://docs.lyzr.ai/introduction/getting-started/intro",
+        "https://www.lyzr.ai/tutorials",
+        "https://docs.lyzr.ai/cookbooks/Choosing%20Model",
+        "https://www.lyzr.ai/",
+        "https://docs.lyzr.ai/agent-lab/agents/api/Introduction"
+      ]
+    }
+  ]
+}
