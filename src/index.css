@@ -2,159 +2,71 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Lyzr Design System - Exact from lyzr.ai website */
+/* Architect.new Design System - Clean & Minimal */
 
 @layer base {
   :root {
-    /* Lyzr Brand Colors - Exact from website */
-    --lyzr-purple-primary: #7458e8;
-    --lyzr-purple-secondary: #8d65e9;
-    --lyzr-dark: #13112a;
-    --lyzr-text: #27272a;
-    --lyzr-text-muted: #8f9bb7;
-    --lyzr-beige: #eddccd;
-    --lyzr-border: rgba(210, 210, 210, 0.5);
-    --lyzr-gray-400: #cbd5e0;
-
-    /* Light Theme */
+    /* Light Theme - White with black text */
     --background: 0 0% 100%;
-    --foreground: 240 8% 16%;
+    --foreground: 0 0% 0%;
     --card: 0 0% 100%;
-    --card-foreground: 240 8% 16%;
-    --popover: 0 0% 100%;
-    --popover-foreground: 240 8% 16%;
-    --primary: 254 74% 62%;
-    --primary-foreground: 0 0% 100%;
-    --secondary: 254 74% 68%;
-    --secondary-foreground: 0 0% 100%;
-    --muted: 240 4.8% 95.9%;
-    --muted-foreground: 218 15% 59%;
-    --accent: 30 40% 88%;
-    --accent-foreground: 240 8% 16%;
-    --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 0 0% 100%;
-    --border: 240 5.9% 90%;
-    --input: 240 5.9% 90%;
-    --ring: 254 74% 62%;
-    --radius: 0.5rem;
+    --card-foreground: 0 0% 0%;
+    --border: 0 0% 0% / 0.3;
+    --input: 0 0% 0% / 0.15;
+    --ring: 0 0% 0%;
+    --muted: 0 0% 96%;
+    --muted-foreground: 0 0% 40%;
+    --accent: 0 0% 96%;
+    --accent-foreground: 0 0% 0%;
   }
 
   .dark {
-    /* Dark Theme - Dark navy backgrounds */
-    --background: 255 48% 6%;
+    /* Dark Theme - Black with white text */
+    --background: 0 0% 0%;
     --foreground: 0 0% 100%;
-    --card: 255 48% 8%;
+    --card: 0 0% 0%;
     --card-foreground: 0 0% 100%;
-    --popover: 255 48% 8%;
-    --popover-foreground: 0 0% 100%;
-    --primary: 254 74% 62%;
-    --primary-foreground: 0 0% 100%;
-    --secondary: 254 74% 68%;
-    --secondary-foreground: 0 0% 100%;
-    --muted: 255 30% 12%;
-    --muted-foreground: 218 15% 65%;
-    --accent: 30 40% 88%;
-    --accent-foreground: 240 8% 16%;
-    --destructive: 0 62.8% 30.6%;
-    --destructive-foreground: 0 0% 100%;
-    --border: 255 30% 18%;
-    --input: 255 30% 18%;
-    --ring: 254 74% 62%;
+    --border: 0 0% 100% / 0.3;
+    --input: 0 0% 100% / 0.15;
+    --ring: 0 0% 100%;
+    --muted: 0 0% 8%;
+    --muted-foreground: 0 0% 60%;
+    --accent: 0 0% 8%;
+    --accent-foreground: 0 0% 100%;
   }
-}
 
-@layer base {
   * {
     @apply border-border;
   }
 
   body {
     @apply bg-background text-foreground;
-    font-family: 'Noto Sans', sans-serif;
+    font-family: system-ui, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji";
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
-    font-size: 16px;
-    line-height: 1.5;
-    color: var(--lyzr-text);
-  }
-
-  h1, h2, h3, h4, h5, h6 {
-    font-family: 'Playfair Display', serif;
-    color: var(--lyzr-text);
-  }
-
-  h1 {
-    font-size: 57px;
-    line-height: 68px;
-    font-weight: 600;
-  }
-
-  h2 {
-    font-size: 40px;
-    line-height: 48px;
-    font-weight: 600;
-  }
-
-  h4 {
-    font-size: 28px;
-    line-height: 34px;
-    font-weight: 500;
-  }
-
-  @media (max-width: 768px) {
-    h1 {
-      font-size: 28px;
-      line-height: 42px;
-    }
-    h2 {
-      font-size: 25px;
-      line-height: 38px;
-    }
-    h4 {
-      font-size: 20px;
-      line-height: 30px;
-    }
   }
 }
 
-/* Lyzr Typography Classes */
-.font-heading {
-  font-family: 'Playfair Display', serif;
-}
-
-.font-body {
-  font-family: 'Noto Sans', sans-serif;
-}
-
-.font-ui {
-  font-family: 'Inter', sans-serif;
-}
-
-/* Lyzr Button Styles - Exact from website */
-.lyzr-btn {
-  padding: 0.4em 1em;
-  border-radius: 50px;
-  border: 2px solid var(--lyzr-border);
-  background: var(--lyzr-purple-primary);
-  color: white;
-  font-family: 'Inter', sans-serif;
-  font-size: 1.125rem;
-  line-height: 1.6;
-  transition: all 0.3s ease;
+/* Architect Button Styles */
+.architect-btn {
+  padding: 0.5rem 1rem;
+  border-radius: 0.375rem;
+  font-size: 0.875rem;
+  font-weight: 500;
+  transition: all 0.2s ease;
   cursor: pointer;
+  border: 1px solid rgba(0, 0, 0, 0.3);
 }
 
-.lyzr-btn:hover {
-  background: var(--lyzr-purple-secondary);
-  transform: translateY(-1px);
+.dark .architect-btn {
+  border-color: rgba(255, 255, 255, 0.3);
 }
 
-.lyzr-btn:disabled {
+.architect-btn:hover {
+  opacity: 0.8;
+}
+
+.architect-btn:disabled {
   opacity: 0.5;
   cursor: not-allowed;
-}
-
-/* Lyzr Card Shadow */
-.lyzr-card-shadow {
-  box-shadow: 0px 15px 15px -10px rgba(0, 0, 0, 0.05);
 }

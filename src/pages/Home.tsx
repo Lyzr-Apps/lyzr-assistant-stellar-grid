@@ -216,77 +216,72 @@ export default function Home() {
   }
 
   return (
-    <div className="h-screen flex flex-col bg-white dark:bg-[#13112a] transition-colors duration-300">
-      {/* Header */}
-      <header className="h-[70px] border-b border-[#e5e7eb] dark:border-[#2d2a4a] flex items-center justify-between px-6 bg-white dark:bg-[#13112a]">
-        <div className="flex items-center gap-4">
-          {/* Lyzr Logo */}
+    <div className="h-screen flex flex-col bg-white dark:bg-black text-black dark:text-white transition-colors duration-200">
+      {/* Header - Minimal architect.new style */}
+      <header className="h-14 border-b border-black/30 dark:border-white/30 flex items-center justify-between px-6">
+        <div className="flex items-center gap-3">
           <div className="flex items-center gap-2">
-            <div className="w-10 h-10 rounded-xl flex items-center justify-center text-white font-bold text-lg" style={{ background: 'linear-gradient(135deg, #7458e8 0%, #8d65e9 100%)' }}>
-              L
-            </div>
-            <span className="font-heading text-2xl font-semibold text-[#27272a] dark:text-white">Lyzr</span>
+            <div className="w-6 h-6 bg-black dark:bg-white rounded"></div>
+            <span className="text-sm font-medium">Lyzr Support</span>
           </div>
-          <div className="w-px h-6 bg-[#e5e7eb] dark:bg-[#2d2a4a]"></div>
-          <h1 className="font-heading text-xl font-medium text-[#27272a] dark:text-white">Support Assistant</h1>
         </div>
 
-        <div className="flex items-center gap-3">
+        <div className="flex items-center gap-2">
           <button
             onClick={() => setTheme(prev => prev === 'light' ? 'dark' : 'light')}
-            className="w-10 h-10 rounded-full flex items-center justify-center hover:bg-[#f3f4f6] dark:hover:bg-[#2d2a4a] transition-colors"
+            className="w-8 h-8 flex items-center justify-center hover:opacity-60 transition-opacity"
           >
             {theme === 'light' ? (
-              <FiMoon className="w-5 h-5 text-[#8f9bb7]" />
+              <FiMoon className="w-4 h-4" />
             ) : (
-              <FiSun className="w-5 h-5 text-[#8f9bb7]" />
+              <FiSun className="w-4 h-4" />
             )}
           </button>
-          <div className="w-10 h-10 rounded-full flex items-center justify-center text-white" style={{ background: 'linear-gradient(135deg, #7458e8 0%, #8d65e9 100%)' }}>
-            <FiUser className="w-5 h-5" />
+          <div className="w-8 h-8 border border-black/30 dark:border-white/30 rounded-full flex items-center justify-center text-xs">
+            U
           </div>
         </div>
       </header>
 
-      <div className="flex-1 flex overflow-hidden relative">
-        {/* Sidebar */}
+      <div className="flex-1 flex overflow-hidden">
+        {/* Sidebar - Minimal style */}
         {sidebarOpen && (
-          <aside className="w-[260px] border-r border-[#e5e7eb] dark:border-[#2d2a4a] bg-white dark:bg-[#13112a] flex flex-col">
-            <div className="p-4 space-y-3">
+          <aside className="w-60 border-r border-black/30 dark:border-white/30 flex flex-col">
+            <div className="p-3 space-y-2">
               <button
                 onClick={handleNewChat}
-                className="lyzr-btn w-full flex items-center justify-center gap-2"
+                className="architect-btn w-full bg-black dark:bg-white text-white dark:text-black flex items-center justify-center gap-2"
               >
                 <FiPlus className="w-4 h-4" />
-                New Chat
+                <span>New Chat</span>
               </button>
 
               <div className="relative">
-                <FiSearch className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-[#8f9bb7]" />
+                <FiSearch className="absolute left-2.5 top-1/2 -translate-y-1/2 w-3.5 h-3.5 opacity-40" />
                 <input
                   type="text"
-                  placeholder="Search conversations..."
+                  placeholder="Search..."
                   value={searchQuery}
                   onChange={(e) => setSearchQuery(e.target.value)}
-                  className="w-full pl-9 pr-3 py-2 rounded-lg border border-[#cbd5e0] dark:border-[#2d2a4a] bg-white dark:bg-[#1a1836] text-[#27272a] dark:text-white font-ui text-sm focus:outline-none focus:ring-2 focus:ring-[#7458e8]"
+                  className="w-full pl-8 pr-3 py-1.5 text-sm bg-transparent border border-black/30 dark:border-white/30 rounded focus:outline-none focus:border-black dark:focus:border-white"
                 />
               </div>
             </div>
 
             <div className="flex-1 overflow-y-auto px-2">
-              <div className="space-y-1 pb-4">
+              <div className="space-y-0.5 pb-3">
                 {filteredConversations.map((conv) => (
                   <button
                     key={conv.id}
                     onClick={() => setActiveConversationId(conv.id)}
-                    className={`w-full text-left px-3 py-2.5 rounded-lg transition-all duration-200 font-ui ${
+                    className={`w-full text-left px-2.5 py-2 rounded text-sm transition-colors ${
                       activeConversationId === conv.id
-                        ? 'bg-[#f3f4f6] dark:bg-[#2d2a4a]'
-                        : 'hover:bg-[#f9fafb] dark:hover:bg-[#1a1836]'
+                        ? 'bg-black/5 dark:bg-white/5'
+                        : 'hover:bg-black/5 dark:hover:bg-white/5'
                     }`}
                   >
-                    <div className="font-medium text-sm truncate text-[#27272a] dark:text-white">{conv.title}</div>
-                    <div className="text-xs text-[#8f9bb7] mt-0.5">
+                    <div className="font-medium truncate text-xs">{conv.title}</div>
+                    <div className="text-[10px] opacity-50 mt-0.5">
                       {new Date(conv.timestamp).toLocaleDateString()}
                     </div>
                   </button>
@@ -298,91 +293,82 @@ export default function Home() {
 
         <button
           onClick={() => setSidebarOpen(!sidebarOpen)}
-          className="absolute top-4 left-2 z-10 w-8 h-8 rounded-full flex items-center justify-center hover:bg-[#f3f4f6] dark:hover:bg-[#2d2a4a] transition-colors"
+          className="absolute top-16 left-2 z-10 w-7 h-7 flex items-center justify-center hover:bg-black/5 dark:hover:bg-white/5 rounded transition-colors"
         >
           {sidebarOpen ? (
-            <FiChevronLeft className="w-4 h-4 text-[#27272a] dark:text-white" />
+            <FiChevronLeft className="w-4 h-4" />
           ) : (
-            <FiMenu className="w-4 h-4 text-[#27272a] dark:text-white" />
+            <FiMenu className="w-4 h-4" />
           )}
         </button>
 
-        {/* Main Chat Area */}
+        {/* Main Chat Area - Architect.new style */}
         <main className="flex-1 flex flex-col">
           <div ref={scrollRef} className="flex-1 overflow-y-auto">
-            <div className="max-w-4xl mx-auto py-12 px-6">
+            <div className="max-w-3xl mx-auto py-8 px-6">
               {showPredefinedPrompts ? (
-                <div>
-                  <div className="text-center mb-10">
-                    <div className="flex justify-center mb-6">
-                      <div className="w-20 h-20 rounded-2xl flex items-center justify-center shadow-lg" style={{ background: 'linear-gradient(135deg, #7458e8 0%, #8d65e9 100%)' }}>
-                        <RiSparklingFill className="w-10 h-10 text-white" />
+                <div className="flex flex-col items-center justify-center min-h-[60vh]">
+                  <div className="w-full max-w-2xl space-y-6">
+                    <div className="text-center space-y-2">
+                      <div className="flex justify-center mb-4">
+                        <div className="w-12 h-12 bg-black dark:bg-white rounded-lg"></div>
                       </div>
+                      <h1 className="text-2xl font-medium">Lyzr Support Assistant</h1>
+                      <p className="text-sm opacity-60">Ask me anything about Lyzr's platform, APIs, or tutorials</p>
                     </div>
-                    <h2 className="font-heading text-4xl md:text-5xl font-semibold mb-3 text-[#27272a] dark:text-white">
-                      Hi! I'm your Lyzr Support Assistant
-                    </h2>
-                    <p className="font-body text-lg text-[#8f9bb7]">
-                      Ask me anything about Lyzr's platform, APIs, or tutorials
-                    </p>
-                  </div>
 
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                    {PREDEFINED_PROMPTS.map((prompt, index) => (
-                      <button
-                        key={index}
-                        onClick={() => handleSendMessage(prompt)}
-                        className="lyzr-card-shadow p-5 rounded-lg border-2 border-[#e5e7eb] dark:border-[#2d2a4a] bg-white dark:bg-[#1a1836] hover:border-[#7458e8] dark:hover:border-[#7458e8] transition-all duration-200 text-left group"
-                      >
-                        <p className="font-ui text-sm font-medium text-[#27272a] dark:text-white group-hover:text-[#7458e8] transition-colors">
-                          {prompt}
-                        </p>
-                      </button>
-                    ))}
+                    <div className="grid gap-2">
+                      {PREDEFINED_PROMPTS.map((prompt, index) => (
+                        <button
+                          key={index}
+                          onClick={() => handleSendMessage(prompt)}
+                          className="architect-btn text-left p-3 hover:bg-black/5 dark:hover:bg-white/5 transition-colors"
+                        >
+                          <p className="text-sm">{prompt}</p>
+                        </button>
+                      ))}
+                    </div>
                   </div>
                 </div>
               ) : (
-                <div>
+                <div className="space-y-6">
                   {activeConversation?.messages.map((message) => (
                     <div
                       key={message.id}
-                      className={`flex gap-4 mb-8 ${message.role === 'user' ? 'flex-row-reverse' : ''}`}
+                      className={`flex gap-3 ${message.role === 'user' ? 'justify-end' : ''}`}
                     >
                       {message.role === 'agent' && (
-                        <div className="w-10 h-10 rounded-full flex items-center justify-center flex-shrink-0" style={{ background: 'linear-gradient(135deg, #7458e8 0%, #8d65e9 100%)' }}>
-                          <RiRobot2Line className="w-5 h-5 text-white" />
+                        <div className="w-7 h-7 rounded-full border border-black/30 dark:border-white/30 flex items-center justify-center flex-shrink-0 text-xs">
+                          A
                         </div>
                       )}
 
-                      <div className={`flex-1 max-w-[80%] ${message.role === 'user' ? 'flex flex-col items-end' : ''}`}>
+                      <div className={`max-w-[80%] ${message.role === 'user' ? 'text-right' : ''}`}>
                         <div
-                          className={`rounded-2xl px-5 py-3.5 font-body ${
+                          className={`inline-block px-4 py-2.5 rounded-lg text-sm ${
                             message.role === 'user'
-                              ? 'text-white'
-                              : 'bg-[#f3f4f6] dark:bg-[#1a1836] text-[#27272a] dark:text-white'
+                              ? 'bg-black dark:bg-white text-white dark:text-black'
+                              : 'bg-black/5 dark:bg-white/5'
                           }`}
-                          style={message.role === 'user' ? { background: 'linear-gradient(135deg, #7458e8 0%, #8d65e9 100%)' } : undefined}
                         >
                           <p className="whitespace-pre-wrap leading-relaxed">{message.content}</p>
 
                           {message.response && message.role === 'agent' && (
-                            <div className="mt-5 space-y-4">
+                            <div className="mt-4 space-y-3 pt-3 border-t border-black/10 dark:border-white/10">
                               {/* Sources */}
                               {message.response.sources && message.response.sources.length > 0 && (
                                 <div>
-                                  <p className="text-xs font-semibold mb-2 text-[#8f9bb7] uppercase tracking-wide font-ui">
-                                    Sources
-                                  </p>
-                                  <div className="space-y-2">
+                                  <p className="text-xs opacity-50 uppercase tracking-wide mb-1.5">Sources</p>
+                                  <div className="space-y-1">
                                     {message.response.sources.map((source, idx) => (
                                       <a
                                         key={idx}
                                         href={source}
                                         target="_blank"
                                         rel="noopener noreferrer"
-                                        className="flex items-center gap-2 text-sm text-[#7458e8] hover:text-[#8d65e9] hover:underline transition-colors font-ui"
+                                        className="flex items-center gap-1.5 text-xs hover:opacity-60 transition-opacity"
                                       >
-                                        <FiExternalLink className="w-3.5 h-3.5 flex-shrink-0" />
+                                        <FiExternalLink className="w-3 h-3 flex-shrink-0" />
                                         <span className="truncate">{source}</span>
                                       </a>
                                     ))}
@@ -393,14 +379,12 @@ export default function Home() {
                               {/* Related Topics */}
                               {message.response.related_topics && message.response.related_topics.length > 0 && (
                                 <div>
-                                  <p className="text-xs font-semibold mb-2 text-[#8f9bb7] uppercase tracking-wide font-ui">
-                                    Related Topics
-                                  </p>
-                                  <div className="flex flex-wrap gap-2">
+                                  <p className="text-xs opacity-50 uppercase tracking-wide mb-1.5">Related</p>
+                                  <div className="flex flex-wrap gap-1.5">
                                     {message.response.related_topics.map((topic, idx) => (
                                       <span
                                         key={idx}
-                                        className="text-xs font-ui px-3 py-1 rounded-full bg-[#eddccd] dark:bg-[#2d2a4a] text-[#27272a] dark:text-white"
+                                        className="text-xs px-2 py-0.5 rounded border border-black/20 dark:border-white/20"
                                       >
                                         {topic}
                                       </span>
@@ -412,8 +396,8 @@ export default function Home() {
                               {/* Confidence Score */}
                               {message.response.confidence && message.response.confidence > 0.7 && (
                                 <div>
-                                  <span className="text-xs font-ui px-3 py-1 rounded-full border-2 border-[#7458e8] text-[#7458e8]">
-                                    Confidence: {(message.response.confidence * 100).toFixed(0)}%
+                                  <span className="text-xs px-2 py-0.5 rounded border border-black/20 dark:border-white/20">
+                                    {(message.response.confidence * 100).toFixed(0)}% confident
                                   </span>
                                 </div>
                               )}
@@ -421,7 +405,7 @@ export default function Home() {
                           )}
                         </div>
 
-                        <p className="text-xs text-[#8f9bb7] mt-2 px-2 font-ui">
+                        <p className="text-[10px] opacity-40 mt-1 px-1">
                           {new Date(message.timestamp).toLocaleTimeString([], {
                             hour: '2-digit',
                             minute: '2-digit'
@@ -430,8 +414,8 @@ export default function Home() {
                       </div>
 
                       {message.role === 'user' && (
-                        <div className="w-10 h-10 rounded-full flex items-center justify-center flex-shrink-0" style={{ background: 'linear-gradient(135deg, #7458e8 0%, #8d65e9 100%)' }}>
-                          <FiUser className="w-5 h-5 text-white" />
+                        <div className="w-7 h-7 rounded-full border border-black/30 dark:border-white/30 flex items-center justify-center flex-shrink-0 text-xs">
+                          U
                         </div>
                       )}
                     </div>
@@ -439,15 +423,15 @@ export default function Home() {
 
                   {/* Typing Indicator */}
                   {isLoading && (
-                    <div className="flex gap-4 mb-8">
-                      <div className="w-10 h-10 rounded-full flex items-center justify-center flex-shrink-0" style={{ background: 'linear-gradient(135deg, #7458e8 0%, #8d65e9 100%)' }}>
-                        <RiRobot2Line className="w-5 h-5 text-white" />
+                    <div className="flex gap-3">
+                      <div className="w-7 h-7 rounded-full border border-black/30 dark:border-white/30 flex items-center justify-center flex-shrink-0 text-xs">
+                        A
                       </div>
-                      <div className="bg-[#f3f4f6] dark:bg-[#1a1836] rounded-2xl px-5 py-4">
-                        <div className="flex gap-1.5">
-                          <div className="w-2 h-2 rounded-full bg-[#8f9bb7] animate-bounce" style={{ animationDelay: '0ms' }} />
-                          <div className="w-2 h-2 rounded-full bg-[#8f9bb7] animate-bounce" style={{ animationDelay: '150ms' }} />
-                          <div className="w-2 h-2 rounded-full bg-[#8f9bb7] animate-bounce" style={{ animationDelay: '300ms' }} />
+                      <div className="bg-black/5 dark:bg-white/5 rounded-lg px-4 py-3">
+                        <div className="flex gap-1">
+                          <div className="w-1.5 h-1.5 rounded-full bg-black/40 dark:bg-white/40 animate-bounce" style={{ animationDelay: '0ms' }} />
+                          <div className="w-1.5 h-1.5 rounded-full bg-black/40 dark:bg-white/40 animate-bounce" style={{ animationDelay: '150ms' }} />
+                          <div className="w-1.5 h-1.5 rounded-full bg-black/40 dark:bg-white/40 animate-bounce" style={{ animationDelay: '300ms' }} />
                         </div>
                       </div>
                     </div>
@@ -457,26 +441,26 @@ export default function Home() {
             </div>
           </div>
 
-          {/* Input Area */}
-          <div className="border-t border-[#e5e7eb] dark:border-[#2d2a4a] bg-white dark:bg-[#13112a] p-6">
-            <form onSubmit={handleSubmit} className="max-w-4xl mx-auto flex gap-3">
+          {/* Input Area - Architect.new style */}
+          <div className="border-t border-black/30 dark:border-white/30 p-4">
+            <form onSubmit={handleSubmit} className="max-w-3xl mx-auto flex gap-2">
               <input
                 type="text"
                 value={inputValue}
                 onChange={(e) => setInputValue(e.target.value)}
                 placeholder="Ask me anything about Lyzr..."
                 disabled={isLoading}
-                className="flex-1 px-5 py-3 rounded-[50px] border-2 border-[#cbd5e0] dark:border-[#2d2a4a] bg-white dark:bg-[#1a1836] text-[#27272a] dark:text-white font-ui text-base focus:outline-none focus:ring-2 focus:ring-[#7458e8] disabled:opacity-50"
+                className="flex-1 px-4 py-2.5 text-sm bg-transparent border border-black/30 dark:border-white/30 rounded-lg focus:outline-none focus:border-black dark:focus:border-white disabled:opacity-50"
               />
               <button
                 type="submit"
                 disabled={!inputValue.trim() || isLoading}
-                className="lyzr-btn px-6 flex items-center justify-center"
+                className="architect-btn bg-black dark:bg-white text-white dark:text-black px-4 flex items-center justify-center"
               >
                 {isLoading ? (
-                  <FiLoader className="w-5 h-5 animate-spin" />
+                  <FiLoader className="w-4 h-4 animate-spin" />
                 ) : (
-                  <FiSend className="w-5 h-5" />
+                  <FiSend className="w-4 h-4" />
                 )}
               </button>
             </form>
